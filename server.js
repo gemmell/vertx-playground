@@ -1,13 +1,8 @@
-var container = require("vertx/container");
-
-container.deployModule("io.vertx~mod-web-server~2.0.0-final", {
-  port: 8080,
-  host: "localhost",
-  bridge: true,
-  inbound_permitted: [
-    { address: 'mindMaps.list' },
-    { address: 'mindMaps.save' },
-    { address: 'mindMaps.delete' }
-  ]
-});
-container.deployVerticle('mindmaps.js');
+def server = vertx.createHttpServer()
+ 
+server.requestHandler { request ->
+ 
+request.response.putHeader("Content-Type", "text/plain")
+request.response.end('Hello Heroku')
+ 
+}.listen( System.getenv('PORT') as int, '0.0.0.0' )
