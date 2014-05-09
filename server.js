@@ -1,8 +1,6 @@
-def server = vertx.createHttpServer()
- 
-server.requestHandler { request ->
- 
-request.response.putHeader("Content-Type", "text/plain")
-request.response.end('Hello Heroku')
- 
-}.listen( System.getenv('PORT') as int, '0.0.0.0' )
+  var vertx = require('vertx');
+
+  vertx.createHttpServer().requestHandler(function(req) {
+      var file = req.path() === '/' ? 'web/index.html' : req.path();
+      req.response.sendFile('web/' + file);
+  }).listen(8080)
