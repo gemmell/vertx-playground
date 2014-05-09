@@ -1,0 +1,5 @@
+<dependency>
+    <groupId>org.vert-x</groupId>
+    <artifactId>vertx-core</artifactId>
+    <version>1.2.1.final</version>
+</dependency>
